@@ -1,0 +1,157 @@
+@import '~@angular/material/theming';
+
+.mat-calendar {
+  display: block
+}
+
+.mat-calendar-header {
+  padding: 8px 8px 0 8px
+}
+
+.mat-calendar-content {
+  padding: 0 8px 8px 8px;
+  outline: 0
+}
+
+.mat-calendar-controls {
+  display: flex;
+  padding: 5% calc(100% / 14 - 22px) 5% calc(100% / 14 - 22px)
+}
+
+.mat-calendar-spacer {
+  flex: 1 1 auto
+}
+
+.mat-calendar-period-button {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  min-width: 0
+}
+
+.mat-calendar-arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top-width: 5px;
+  border-top-style: solid;
+  margin: 0 0 0 5px;
+  vertical-align: middle
+}
+
+.mat-calendar-arrow.mat-calendar-invert {
+  transform: rotate(180deg)
+}
+
+.mat-calendar-next-button, .mat-calendar-previous-button {
+  position: relative
+}
+
+.mat-calendar-next-button::after, .mat-calendar-previous-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: 15.5px;
+  border: 0 solid currentColor;
+  border-top-width: 2px
+}
+
+.mat-calendar-previous-button::after {
+  border-left-width: 2px;
+  transform: translateX(2px) rotate(-45deg)
+}
+
+.mat-calendar-next-button::after {
+  border-right-width: 2px;
+  transform: translateX(-2px) rotate(45deg)
+}
+
+.mat-calendar-table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: 100%
+}
+
+.mat-calendar-table-header th {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 400;
+  padding: 0 0 8px 0
+}
+
+.mat-calendar-table-header-divider {
+  position: relative;
+  height: 1px
+}
+
+.mat-calendar-table-header-divider::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -8px;
+  right: -8px;
+  height: 1px
+}
+
+.mat-calendar-body {
+  font-size: 13px;
+  min-width: 224px
+}
+
+.mat-calendar-body-label {
+  padding: 7.14286% 0 7.14286% 7.14286%;
+  height: 0;
+  line-height: 0;
+  transform: translateX(-6px);
+  text-align: left;
+  font-size: 14px;
+  font-weight: 700
+}
+
+.mat-calendar-body-cell {
+  position: relative;
+  width: 14.28571%;
+  height: 0;
+  line-height: 0;
+  padding: 7.14286% 0;
+  text-align: center;
+  outline: 0;
+  cursor: pointer
+}
+
+.mat-calendar-body-disabled {
+  cursor: default
+}
+
+.mat-calendar-body-cell-content {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 90%;
+  height: 90%;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 50%
+}
+
+[dir=rtl] .mat-calendar-body-label {
+  padding: 0 7.14286% 0 0;
+  transform: translateX(6px);
+  text-align: right
+}
+
+$accent:  mat-palette($mat-red, A100, 100);
+
+.mat-calendar-body-selected {
+  background-color: mat-color($accent);
+  color: mat-color($accent, default-contrast);
+}

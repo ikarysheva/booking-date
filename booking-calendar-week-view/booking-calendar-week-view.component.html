@@ -1,0 +1,118 @@
+<div flex class="text-center pad-top">
+    <button mat-button (click)="toggleCalendar()">
+        {{ monthLabel }}
+        <mat-icon *ngIf="!opened">keyboard_arrow_down</mat-icon>
+        <mat-icon *ngIf="opened">keyboard_arrow_up</mat-icon>
+    </button>
+</div>
+<div layout="row" class="push-top push-bottom" style="overflow: hidden" [style.height]="getContainerHeight(opened, currentMonth) + 'px'">
+
+
+    <div layout="column" layout-align="center center">
+        <button mat-icon-button (click)="onPrevButtonClick($event)" [disabled]="!prevEnabled">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+    </div>
+    <div flex style="overflow: hidden">
+
+        <table class="mat-calendar-table">
+            <thead>
+            <tr role="row" #daysRow>
+                <th *ngFor="let day of weekdays">
+                    {{day.short}}
+                </th>
+            </tr>
+            </thead>
+        </table>
+        <div layout="row" flex [@weekState]="weekState">
+            <table class="mat-calendar-table">
+                <tbody role="grid">
+                <tr role="row" #weekRow>
+                    <td *ngFor="let item of currentWeek; let colIndex = index" role="gridcell"
+                        class="mat-calendar-body-cell"
+                        [class.mat-calendar-body-disabled]="getCellDisabled(item)"
+                        [attr.aria-label]="item.ariaLabel"
+                        [attr.aria-disabled]="getCellDisabled(item) || null" (click)="cellClicked(item)">
+                        <div class="mat-calendar-body-cell-content" *ngIf="!opened || currentRow === 0"
+                             [class.mat-calendar-body-selected]="getCellSelected(item)"
+                             [class.mat-calendar-body-today]="getCellToday(item)"
+                             layout="column">
+            <span [ngClass]="{'tc-grey-400': getCellDisabled(item)}">
+              {{item.displayValue}}
+            </span>
+                            <span class="pad-top text-md text-center tc-grey-600" *ngIf="!opened">
+              {{item.monthShort}}
+            </span>
+
+                        </div>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div flex>
+
+
+            <div layout="row" flex [@calendarState]="calendarState" *ngIf="opened && currentRow > 0">
+
+
+                <table class="mat-calendar-table">
+                    <tbody role="grid">
+                    <tr role="row">
+                        <td *ngFor="let i = index; let col of columns"></td>
+                    </tr>
+                    <ng-container *ngFor="let week of months[currentMonth]; let rowIndex = index">
+
+                        <tr role="row" *ngIf="rowIndex <= currentRow">
+                            <td *ngFor="let item of week; let colIndex = index" role="gridcell"
+                                class="mat-calendar-body-cell"
+                                [class.mat-calendar-body-disabled]="getCellDisabled(item)"
+                                [attr.aria-label]="item.ariaLabel"
+                                [attr.aria-disabled]="getCellDisabled(item)  || null" (click)="cellClicked(item)">
+                                <div class="mat-calendar-body-cell-content"
+                                     [ngClass]="{'tc-grey-400': getCellDisabled(item)}"
+                                     [class.mat-calendar-body-selected]="getCellSelected(item)"
+                                     [class.mat-calendar-body-today]="getCellToday(item)"> {{item.displayValue}}
+                                </div>
+                        </tr>
+                    </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div flex>
+            <div layout="row" [@calendarState2]="calendarState" flex *ngIf="opened">
+
+
+                <table class="mat-calendar-table">
+                    <tbody role="grid">
+                    <tr role="row">
+                        <td *ngFor="let i = index; let col of columns"></td>
+                    </tr>
+                    <ng-container *ngFor="let week of months[currentMonth]; let rowIndex = index">
+
+                        <tr role="row" *ngIf="rowIndex > currentRow">
+                            <td *ngFor="let item of week; let colIndex = index" role="gridcell"
+                                class="mat-calendar-body-cell"
+                                [class.mat-calendar-body-disabled]="getCellDisabled(item)"
+                                [attr.aria-label]="item.ariaLabel"
+                                [attr.aria-disabled]="getCellDisabled(item) || null" (click)="cellClicked(item)">
+                                <div class="mat-calendar-body-cell-content"
+                                     [ngClass]="{'tc-grey-400': getCellDisabled(item)}"
+                                     [class.mat-calendar-body-selected]="getCellSelected(item)"
+                                     [class.mat-calendar-body-today]="getCellToday(item)"> {{item.displayValue}}
+                                </div>
+                        </tr>
+                    </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+    <div layout="column" layout-align="center center">
+        <button mat-icon-button (click)="onNextButtonClick($event)" [disabled]="!nextEnabled">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+    </div>
+</div>

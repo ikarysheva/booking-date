@@ -1,0 +1,38 @@
+<td-expansion-panel #calendarPanel [expand]="true" class="push-bottom">
+  <ng-template td-expansion-panel-header>
+    <div layout="row" class="td-expansion-panel-header-content">
+      <div *ngIf="!selectedDate" layout="row" layout-align="start center" flex>
+        <span>Select date</span>
+      </div>
+      <div *ngIf="selectedDate" layout="row" flex>
+        <div layout="column" layout-align="center center">
+          <button mat-icon-button (click)="onPrevButtonClick($event)" [disabled]="!prevDateEnabled">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+          </button>
+        </div>
+        <div layout="row" layout-align="center center" flex>
+          <span class="text-xl" hide-xs>{{ selectedDate | date: 'yMMMMEEEEd' }}</span>
+          <span hide-gt-xs="">{{ selectedDate | date: 'mediumDate' }}</span>
+        </div>
+        <div layout="column" layout-align="center center">
+          <button mat-icon-button (click)="onNextButtonClick($event)" [disabled]="!nextDateEnabled">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+    <!--<md-icon class="tc-grey-500">today</md-icon>-->
+  </ng-template>
+  <mat-divider></mat-divider>
+  <div layout="row"
+       layout-align="center"
+       flex>
+    <div style="max-width: 380px" flex>
+      <ng-template #calendarContainer></ng-template>
+    </div>
+  </div>
+
+
+</td-expansion-panel>

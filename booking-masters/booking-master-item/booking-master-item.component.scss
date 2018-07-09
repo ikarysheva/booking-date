@@ -1,0 +1,25 @@
+@import '~@angular/material/theming';
+
+$accent:  mat-palette($mat-red, A100, 100);
+
+$grey:  mat-palette($mat-blue-grey, 50);
+
+mat-grid-tile {
+  min-width: 88px;
+  border-radius: 3px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration:none;
+  border: none;
+  outline: none;
+  background-color: mat-color($grey);
+}
+
+mat-grid-tile.selected {
+  color: white;
+  background-color: mat-color($accent);
+}
+
+.color-accent {
+  color: mat-color($accent);
+}

@@ -1,0 +1,11 @@
+<div *ngFor="let item of masters">
+    <app-booking-master-item
+            [master]="item"
+            [selected]="item === selectedMaster"
+            [selectedTime]="selectedTime"
+            [selectedDate]="selectedDate"
+            (selectTime)="onTimeSelected($event, item)"></app-booking-master-item>
+</div>
+
+
+

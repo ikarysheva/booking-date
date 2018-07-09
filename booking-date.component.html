@@ -1,0 +1,31 @@
+<app-booking-steps [stepIndex]="1">
+  <!--<ng-template tdLoading [tdLoadingUntil]="loading">-->
+
+
+  <div layout="column" flex class="push-top push-bottom"
+       *tdLoading="let date until firstEnableDate | async; type: 'linear'; color: 'primary'">
+    <mat-card style="margin: 0 0 8px 0;">
+
+
+    <app-booking-calendar-week-view [range]="2"
+                                    [dateFilter]="dateFilter"
+                                    [activeDate]="date"
+                                    [selected]="selectedDate"
+                                    flex
+                                    *ngIf="date"
+                                    (selectedChange)="onSelectedChanged($event)">
+
+    </app-booking-calendar-week-view>
+    <!--<app-booking-calendar #calendar flex></app-booking-calendar>-->
+      <mat-divider></mat-divider>
+    <app-booking-masters flex></app-booking-masters>
+    </mat-card>
+
+  </div>
+  <!--</ng-template>-->
+</app-booking-steps>
+
+
+
+
+

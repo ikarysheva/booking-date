@@ -1,0 +1,21 @@
+<div class="pad bgc-white-4 push-bottom">
+    <div layout="row">
+        <p class="pad-right">Ближайшие сеансы</p>
+        <p class="color-accent">{{times.date | date: 'mediumDate'}}</p>
+    </div>
+    <mat-grid-list gutterSize="16px" rowHeight="2:1"
+                  [cols]="(media.registerQuery('gt-sm') | async) ? 6 :
+                        (media.registerQuery('gt-xs') | async) ? 4 :
+                        (media.registerQuery('gt-md') | async) ? 5 : 3 ">
+        <mat-grid-tile *ngFor="let time of times.times; let i = index"
+                      style="cursor: pointer"
+                       mat-ripple="#FF0000"
+                      [class.selected]="selected && i === selectedIndex"
+                      (click)="onTileClick(i)"
+                      id="{{i}}">
+            {{ time + ':00' }}
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+
+

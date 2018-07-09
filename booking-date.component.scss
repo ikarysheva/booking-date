@@ -1,0 +1,13 @@
+:host /deep/ {
+  .td-expansion-panel {
+
+    box-shadow: none !important;
+
+  }
+
+  .td-loading-wrapper .td-loading {
+    visibility: hidden;
+  }
+}
+
+// td-loading ng-trigger ng-trigger-tdFadeInOut
